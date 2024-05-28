@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <cclcuda.cuh>
-#include <cclcuda.cu>
+#include "cclcuda.cu"
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
 #include <iomanip>
@@ -25,7 +24,7 @@ int main(int argc, char* argv[]) {
 
     fscanf(input_file, "%d %d", &rows, &cols);
 
-    unsigned char data[rows * cols] = {0};
+    unsigned char data[rows * cols];
 
     for (int i = 0; i < rows * cols; i++) {
         fscanf(input_file, "%d", &data[i]);
@@ -33,7 +32,7 @@ int main(int argc, char* argv[]) {
 
     fclose(input_file);
 
-    int labels[width * height] = { 0 };
+    int labels[rows * cols] = { 0 };
 
     auto degreeOfConnectivity = 4;
 	unsigned char threshold = 0;
